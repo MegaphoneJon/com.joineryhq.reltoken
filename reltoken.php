@@ -14,6 +14,9 @@ function reltoken_civicrm_tokens(&$tokens) {
     $calledOnce = TRUE;
     $contactTokens = CRM_Core_SelectValues::contactTokens();
   }
+  // Contact ID isn't returned correctly, set it manually.
+  $contactTokens['{contact.contact_id}'] = "Contact ID";
+  unset($contactTokens['{contact.id}']);
   $hashedRelationshipTypes = _reltoken_get_hashed_relationship_types();
 
   // For each standard contact token, create a corresponding token for each
